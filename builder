@@ -15,7 +15,11 @@ main() {
 			--prefix="$prefix" \
 			--libdir="$prefix/lib" \
 			--libexecdir="$prefix/lib" \
-			--enable-multi-arch
+			--host=i686-linux-gnu \
+			--build=i686-linux-gnu \
+			CC="gcc -m32" CXX="g++ -m32" \
+			CFLAGS="-O2 -march=i686" \
+			CXXFLAGS="-O2 -march=i686"
 		make && make install
 		tar --hard-dereference -zcf "/glibc-bin-$version.tar.gz" "$prefix"
 	} >&2
